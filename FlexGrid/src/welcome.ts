@@ -3,6 +3,7 @@ import {EntityManagerProvider} from "resources/data/entity-manager-provider";
 import errorHandler from "resources/core/error-handler";
 var wijmo: any;
 
+@inject(EntityManagerProvider)
 export class Welcome {
     heading: string = "Welcome";
 
@@ -10,10 +11,9 @@ export class Welcome {
     entities: any[] = [];
 
     entityManager: breeze.EntityManager;
-    constructor(private entityManagerProvider: EntityManagerProvider, private element: HTMLElement) {
+    constructor(private entityManagerProvider: EntityManagerProvider) {
         console.log("mapping-list cstr");
         console.log(entityManagerProvider.toString());
-        console.log(element.toString());
         entityManagerProvider.initializeEntityManager()
             .then((em: breeze.EntityManager) => {
                 this.entityManager = em;
@@ -34,15 +34,6 @@ export class Welcome {
 
             errorHandler.handleError(error, this.location);
         }
-    }
-
-    attached() {
-        console.log("attached");
-        let flex = new wijmo.grid.FlexGrid(this.element);
-        flex.initialize({
-            itemsSource: this.items
-        });
-
     }
 
     items: any;
