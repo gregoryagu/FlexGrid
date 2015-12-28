@@ -2,7 +2,7 @@ import {autoinject, inject, singleton} from "aurelia-framework";
 import {EntityManagerProvider} from "resources/data/entity-manager-provider";
 import errorHandler from "resources/core/error-handler";
 import {AppLogger} from "resources/core/app-logger";
-var wijmo: any;
+declare var wijmo: any;
 
 @inject(EntityManagerProvider, AppLogger)
 export class Welcome {
@@ -17,13 +17,13 @@ export class Welcome {
         entityManagerProvider.initializeEntityManager()
             .then((em: breeze.EntityManager) => {
                 this.entityManager = em;
-                this.getInitialData();
+                this.getFlexData();
             });
     }
 
     async getInitialData() {
         let query = new breeze.EntityQuery()
-            .from('FileRowMaps');
+            .from('Contacts');
 
         try {
             let queryResult = await this.entityManager.executeQuery(query);

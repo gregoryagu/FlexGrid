@@ -21,8 +21,7 @@ export class AppLogger {
         this.log("Warning: " + message);
     }
     log(message) {
-        var console = window.console;
-        !!console && console.log && console.log.apply && console.log.apply(console, message);
+        console.log(message);
     }
 }
 //# sourceMappingURL=app-logger.js.map

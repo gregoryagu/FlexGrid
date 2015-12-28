@@ -2,7 +2,7 @@
 * Global settings/constants
 */
 let urlsForDevelopement = {
-    serviceName: "http://localhost:58889/breeze/data"
+    serviceName: "http://localhost:9000/breeze/data"
 };
 let urlsForProduction = {
     serviceName: "http://iisprod/edimetadata/breeze/data"

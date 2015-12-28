@@ -20,30 +20,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promi
 import { inject } from "aurelia-framework";
 import { EntityManagerProvider } from "resources/data/entity-manager-provider";
 import errorHandler from "resources/core/error-handler";
-var wijmo;
+import { AppLogger } from "resources/core/app-logger";
 export let Welcome = class {
-    constructor(entityManagerProvider) {
-        this.heading = "Welcome";
-        this.location = "FileRowMaps";
+    constructor(entityManagerProvider, appLogger) {
+        this.entityManagerProvider = entityManagerProvider;
+        this.appLogger = appLogger;
+        this.loggerTitle = "FileRowMaps";
         this.entities = [];
-        console.log("mapping-list cstr");
-        console.log(entityManagerProvider.toString());
-        //entityManagerProvider.initializeEntityManager()
-        //    .then((em: breeze.EntityManager) => {
-        //        this.entityManager = em;
-        //        this.getFlexData();
-        //    });
+        entityManagerProvider.initializeEntityManager()
+            .then((em) => {
+            this.entityManager = em;
+            this.getFlexData();
+        });
     }
     getInitialData() {
         return __awaiter(this, void 0, Promise, function* () {
             let query = new breeze.EntityQuery()
-                .from('FileRowMaps');
+                .from('Contacts');
             try {
                 let queryResult = yield this.entityManager.executeQuery(query);
                 this.entities = queryResult.results;
+                this.appLogger.info("Got entities:" + this.entities.length, this.loggerTitle);
             }
             catch (error) {
-                errorHandler.handleError(error, this.location);
+                errorHandler.handleError(error, this.loggerTitle);
             }
         });
     }
@@ -75,6 +75,6 @@ export let Welcome = class {
     }
 };
 Welcome = __decorate([
-    inject(EntityManagerProvider)
+    inject(EntityManagerProvider, AppLogger)
 ], Welcome);
 //# sourceMappingURL=welcome.js.map

@@ -35,7 +35,7 @@ namespace FlexGrid.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IQueryable<Contact> FileRowMaps()
+        public IQueryable<Contact> Contacts()
         {
             return _contextProvider.Context.Contacts;
         }
