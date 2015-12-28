@@ -1,3 +1,9 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promise, generator) {
     return new Promise(function (resolve, reject) {
         generator = generator.call(thisArg, _arguments);
@@ -11,23 +17,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promi
         step("next", void 0);
     });
 };
+import { inject } from "aurelia-framework";
+import { EntityManagerProvider } from "resources/data/entity-manager-provider";
 import errorHandler from "resources/core/error-handler";
 var wijmo;
-export class Welcome {
-    constructor(entityManagerProvider, element) {
-        this.entityManagerProvider = entityManagerProvider;
-        this.element = element;
+export let Welcome = class {
+    constructor(entityManagerProvider) {
         this.heading = "Welcome";
         this.location = "FileRowMaps";
         this.entities = [];
         console.log("mapping-list cstr");
         console.log(entityManagerProvider.toString());
-        console.log(element.toString());
-        entityManagerProvider.initializeEntityManager()
-            .then((em) => {
-            this.entityManager = em;
-            this.getFlexData();
-        });
+        //entityManagerProvider.initializeEntityManager()
+        //    .then((em: breeze.EntityManager) => {
+        //        this.entityManager = em;
+        //        this.getFlexData();
+        //    });
     }
     getInitialData() {
         return __awaiter(this, void 0, Promise, function* () {
@@ -40,13 +45,6 @@ export class Welcome {
             catch (error) {
                 errorHandler.handleError(error, this.location);
             }
-        });
-    }
-    attached() {
-        console.log("attached");
-        let flex = new wijmo.grid.FlexGrid(this.element);
-        flex.initialize({
-            itemsSource: this.items
         });
     }
     getFlexData() {
@@ -75,5 +73,8 @@ export class Welcome {
             this.entityManagerProvider.saveFailed(e.data, this.entityManager);
         });
     }
-}
+};
+Welcome = __decorate([
+    inject(EntityManagerProvider)
+], Welcome);
 //# sourceMappingURL=welcome.js.map

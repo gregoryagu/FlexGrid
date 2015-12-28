@@ -18,6 +18,7 @@ System.config({
   map: {
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-beta.1.0.2",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-beta.1",
+    "aurelia-breeze": "npm:aurelia-breeze@1.0.0",
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.0.2",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.6",
     "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0-beta.1.0.1",
@@ -80,6 +81,13 @@ System.config({
       "aurelia-templating-resources": "npm:aurelia-templating-resources@1.0.0-beta.1.0.3",
       "aurelia-templating-router": "npm:aurelia-templating-router@1.0.0-beta.1.0.3",
       "core-js": "npm:core-js@1.2.6"
+    },
+    "npm:aurelia-breeze@1.0.0": {
+      "aurelia-binding": "npm:aurelia-binding@1.0.0-beta.1.0.3",
+      "aurelia-http-client": "npm:aurelia-http-client@1.0.0-beta.1",
+      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.0.1",
+      "aurelia-templating": "npm:aurelia-templating@1.0.0-beta.1.0.2",
+      "breeze": "npm:breeze-client@1.5.5"
     },
     "npm:aurelia-dependency-injection@1.0.0-beta.1": {
       "aurelia-logging": "npm:aurelia-logging@1.0.0-beta.1",
