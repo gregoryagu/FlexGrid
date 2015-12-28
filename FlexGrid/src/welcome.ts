@@ -8,7 +8,7 @@ import {BreezeCollectionView} from "resources/data/BreezeCollectionView";
 export class Welcome {
 
     loggerTitle: string = "FileRowMaps";
-    entities: any[] = [];
+    items: BreezeCollectionView;
 
     entityManager: breeze.EntityManager;
                        
@@ -21,22 +21,7 @@ export class Welcome {
             });
     }
 
-    async getInitialData() {
-        let query = new breeze.EntityQuery()
-            .from('Contacts');
-
-        try {
-            let queryResult = await this.entityManager.executeQuery(query);
-            this.entities = queryResult.results;
-            this.appLogger.info("Got entities:" + this.entities.length, this.loggerTitle);
-
-        } catch (error) {
-
-            errorHandler.handleError(error, this.loggerTitle);
-        }
-    }
-
-    items: any;
+    
 
     getFlexData() {
 
