@@ -1825,7 +1825,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
-    <Content Include="Scripts\BreezeCollectionView.js" />
+    <Content Include="Scripts\BreezeCollectionView_Original.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1850,6 +1850,7 @@
     <TypeScriptCompile Include="src\resources\config\urls.ts" />
     <TypeScriptCompile Include="src\resources\core\app-logger.ts" />
     <TypeScriptCompile Include="src\resources\core\error-handler.ts" />
+    <TypeScriptCompile Include="src\resources\data\BreezeCollectionView.ts" />
     <TypeScriptCompile Include="src\resources\data\entity-manager-provider.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <Content Include="src\nav-bar.html" />
