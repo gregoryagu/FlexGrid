@@ -13,7 +13,6 @@ export class EntityManagerProvider {
         //This must be done before creating entity Manager.
         //let NamingConvention = breeze.NamingConvention; // for convenience
         //NamingConvention.camelCase.setAsDefault();
-        this.logger.info("Constructor", this.loggerTitle);
         this.masterManager = new breeze.EntityManager(Urls.serviceName);
         let store = this.masterManager.metadataStore;
     }

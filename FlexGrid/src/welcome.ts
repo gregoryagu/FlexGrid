@@ -1,24 +1,23 @@
 import {autoinject, inject, singleton} from "aurelia-framework";
 import {EntityManagerProvider} from "resources/data/entity-manager-provider";
 import errorHandler from "resources/core/error-handler";
+import {AppLogger} from "resources/core/app-logger";
 var wijmo: any;
 
-@inject(EntityManagerProvider)
+@inject(EntityManagerProvider, AppLogger)
 export class Welcome {
-    heading: string = "Welcome";
 
-    location: string = "FileRowMaps";
+    loggerTitle: string = "FileRowMaps";
     entities: any[] = [];
 
     entityManager: breeze.EntityManager;
                        
-    constructor(private entityManagerProvider: EntityManagerProvider) {
-        console.log("mapping-list cstr");
-        console.log(entityManagerProvider.toString());
+    constructor(private entityManagerProvider: EntityManagerProvider, private appLogger: AppLogger) {
+        
         entityManagerProvider.initializeEntityManager()
             .then((em: breeze.EntityManager) => {
                 this.entityManager = em;
-                this.getFlexData();
+                this.getInitialData();
             });
     }
 
@@ -29,11 +28,11 @@ export class Welcome {
         try {
             let queryResult = await this.entityManager.executeQuery(query);
             this.entities = queryResult.results;
-
+            this.appLogger.info("Got entities:" + this.entities.length, this.loggerTitle);
 
         } catch (error) {
 
-            errorHandler.handleError(error, this.location);
+            errorHandler.handleError(error, this.loggerTitle);
         }
     }
 
