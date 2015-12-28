@@ -2,7 +2,7 @@
 * Global settings/constants
 */
 let urlsForDevelopement: any = {
-    serviceName: "http://localhost:58889/breeze/data"
+    serviceName: "http://localhost:9000/breeze/data"
 };
 
 let urlsForProduction: any = {

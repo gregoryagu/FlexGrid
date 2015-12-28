@@ -11,17 +11,15 @@ export class Welcome {
     entities: any[] = [];
 
     entityManager: breeze.EntityManager;
-    entityManagerProvider: EntityManagerProvider;
-    
-    
-    constructor(entityManagerProvider: EntityManagerProvider) {
+                       
+    constructor(private entityManagerProvider: EntityManagerProvider) {
         console.log("mapping-list cstr");
         console.log(entityManagerProvider.toString());
-        //entityManagerProvider.initializeEntityManager()
-        //    .then((em: breeze.EntityManager) => {
-        //        this.entityManager = em;
-        //        this.getFlexData();
-        //    });
+        entityManagerProvider.initializeEntityManager()
+            .then((em: breeze.EntityManager) => {
+                this.entityManager = em;
+                this.getFlexData();
+            });
     }
 
     async getInitialData() {

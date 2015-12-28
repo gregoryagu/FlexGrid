@@ -28,8 +28,7 @@ export class AppLogger {
     }
 
     log(message: string) {
-        var console = window.console;
-        !!console && console.log && console.log.apply && console.log.apply(console, message);
+        console.log(message);
     }
 
 }
