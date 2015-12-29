@@ -1,4 +1,5 @@
-﻿//module wijmo.data {
+﻿
+//module wijmo.data {
 
     /**
      * Extends @see:CollectionView to support Breeze.
@@ -9,8 +10,8 @@
      * You can find out more about BreezeJS at http://www.breezejs.com. 
      */
     export class BreezeCollectionView extends wijmo.collections.CollectionView {
-        _manager: any;
-        _entityQuery: any;
+        _manager: breeze.EntityManager;
+        _entityQuery: breeze.EntityQuery;
         _sortOnServer: boolean;
         _pageOnServer: boolean;
         _filterPredict: any;
@@ -341,8 +342,8 @@
                 this._isSaving = true;
                 this._manager.saveChanges(entities)
                     .then(this._saveSucceeded.bind(this))
-                    .fail(this._saveFailed.bind(this))
-                    .fin(this._saveFinished.bind(this));
+                    .catch(this._saveFailed.bind(this))
+                    .finally(this._saveFinished.bind(this));
             }
         }
     }
