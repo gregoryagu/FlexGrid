@@ -1,6 +1,6 @@
 ﻿
 import {bindable, customElement, inject, bindingMode} from 'aurelia-framework';
-import {BreezeCollectionView} from "resources/data/BreezeCollectionView";
+import {BreezeCollectionView} from "resources/data/breeze-collection-view";
 
 @inject(Element)
 @customElement("wj-flex-grid")
@@ -24,7 +24,7 @@ export class WjFlexGrid {
         this.control = new wijmo.grid.FlexGrid(this.element);
         this.control.isReadOnly = true;
         if (this.items != null) {
-            this.control.itemsSource = this.items.sourceCollection;
+            this.control.itemsSource = this.items;
         }
     }
 

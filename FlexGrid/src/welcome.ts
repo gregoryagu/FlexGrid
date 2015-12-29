@@ -2,7 +2,7 @@ import {autoinject, inject, singleton} from "aurelia-framework";
 import {EntityManagerProvider} from "resources/data/entity-manager-provider";
 import errorHandler from "resources/core/error-handler";
 import {AppLogger} from "resources/core/app-logger";
-import {BreezeCollectionView} from "resources/data/BreezeCollectionView";
+import {BreezeCollectionView} from "resources/data/breeze-collection-view";
 
 @inject(EntityManagerProvider, AppLogger)
 export class Welcome {
