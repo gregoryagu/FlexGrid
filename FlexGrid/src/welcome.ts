@@ -9,10 +9,9 @@ export class Welcome {
 
     loggerTitle: string = "FileRowMaps";
     items: BreezeCollectionView;
-    currentItem: any;
-
     entityManager: breeze.EntityManager;
-                       
+    options: any;                
+       
     constructor(private entityManagerProvider: EntityManagerProvider, private appLogger: AppLogger) {
         
         entityManagerProvider.initializeEntityManager()
@@ -22,30 +21,20 @@ export class Welcome {
             });
     }
 
-    
-
     getFlexData() {
 
-        /////New Code
+        let options = {
+            columns: [
+                { header: 'First Name', binding: 'FirstName', required: false },
+                { header: 'Last Name', binding: 'LastName', required: false }
+            ],
+            autoGenerateColumns: false
+        };
+
+
         var query = breeze.EntityQuery.from("Contacts");
-        
         this.items = new BreezeCollectionView(
-            this.entityManager, query, true, true);
-        
-        
-        //this.items.currentChanged.addHandler(() => {
-        //    this.currentItem = this.items.currentItem;
-        //    this.appLogger.info(this.currentItem.FirstName + this.currentItem.LastName);
-        //});
-
-        //this.items.collectionChanged.addHandler(() => {
-        //    this.currentItem = this.items.currentItem;
-        //    this.appLogger.info("collection changed");
-        //});
-
-        
-
-
+            this.entityManager, query, options, true, true);
     }
 
 }

@@ -17,6 +17,7 @@
         _filterPredict: any;
         _totalCount: number;
         _isSaving: boolean = false;
+        _flexGridOptions:any;
 
         /**
         * Initializes a new instance of an @see:BreezeCollectionView.
@@ -26,16 +27,22 @@
         * @param sortOnServer Whether to sort on the server or on the client.
         * @param pageOnServer Whether to page on the server or on the client.
         */
-        constructor(breezeEntityManager: any, entityQuery: any, sortOnServer = false, pageOnServer = false) {
+        constructor(breezeEntityManager: any, entityQuery: any, flexGridOptions: any = undefined, sortOnServer = false, pageOnServer = false) {
             super();
             this._manager = breezeEntityManager;
             this._entityQuery = entityQuery;
             this._sortOnServer = sortOnServer;
             this._pageOnServer = pageOnServer;
+            this._flexGridOptions = flexGridOptions;
             this.sortDescriptions.collectionChanged.removeAllHandlers();
             this.sortDescriptions.collectionChanged.addHandler(this._sortDescHandler.bind(this));
             this._queryData();
         }
+
+        get FlexGridOptions() {
+            return this._flexGridOptions;
+        }
+
 
         /**
          * Override _getPageView to get the list that corresponds to the current page.

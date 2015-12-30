@@ -9,7 +9,7 @@ export class WjFlexGrid {
     
     control: wijmo.grid.FlexGrid;
     @bindable items: BreezeCollectionView;
-    //numberInput: number;
+    
 
     constructor(private element: HTMLElement, private appLogger: AppLogger) {
         
@@ -21,17 +21,11 @@ export class WjFlexGrid {
 
 
     attached(param: any): void {
-        let options: any = {
-            columns: [
-                { header: 'First Name', binding: 'FirstName', required: false },
-                { header: 'Last Name', binding: 'LastName', required: false }
-            ],
-            autoGenerateColumns: false
-        };
-        this.control = new wijmo.grid.FlexGrid(this.element, options);
         
-
         if (this.items != null) {
+
+            this.control = new wijmo.grid.FlexGrid(this.element, this.items.FlexGridOptions);
+
             this.control.itemsSource = this.items;
 
             this.items.querySucceeded.addHandler((sender: any, e: any) => {
