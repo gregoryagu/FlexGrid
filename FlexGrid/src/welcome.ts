@@ -42,19 +42,19 @@ export class Welcome {
             if (numberInput) {
                 numberInput.max = this.items.pageCount;
             }
-            this.entityManagerProvider.querySucceeded(e.data);
+            this.appLogger.querySucceeded(e.data);
         });
 
         this.items.queryFailed.addHandler((sender: any, e: any) => {
-            this.entityManagerProvider.queryFailed(e.data.message);
+            this.appLogger.queryFailed(e.data.message);
         });
 
         this.items.saveSucceeded.addHandler((sender: any, e: any) => {
-            this.entityManagerProvider.saveSucceeded(e.data);
+            this.appLogger.saveSucceeded(e.data);
         });
 
         this.items.saveFailed.addHandler((sender: any, e: any) => {
-            this.entityManagerProvider.saveFailed(e.data, this.entityManager);
+            this.appLogger.saveFailed(e.data);
         });
 
 
