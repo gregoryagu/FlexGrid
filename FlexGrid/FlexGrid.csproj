@@ -1867,6 +1867,7 @@
     <Content Include="src\welcome.html" />
     <TypeScriptCompile Include="src\welcome.ts" />
     <Content Include="styles\styles.css" />
+    <Content Include="styles\vendor\wijmo.min.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

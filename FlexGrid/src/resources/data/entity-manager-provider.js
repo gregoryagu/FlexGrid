@@ -44,10 +44,6 @@ export let EntityManagerProvider = class {
             return this.createManager();
         });
     }
-    /////New Code
-    getEntityQuery(tableName) {
-        return breeze.EntityQuery.from(tableName);
-    }
     getPredict(predictValue) {
         if (!predictValue || !predictValue.length) {
             return;

@@ -20,15 +20,15 @@ export let Welcome = class {
         });
     }
     getFlexData() {
-        this.items = new BreezeCollectionView(this.entityManager, this.entityManagerProvider.getEntityQuery("Contacts"), true, true);
-        let item = null;
-        var numberInput = null;
-        this.items.currentChanged.addHandler(() => {
-            item = this.items.currentItem;
-        });
-        this.items.collectionChanged.addHandler(() => {
-            item = this.items.currentItem;
-        });
+        let options = {
+            columns: [
+                { header: 'First Name', binding: 'FirstName', required: false },
+                { header: 'Last Name', binding: 'LastName', required: false }
+            ],
+            autoGenerateColumns: false
+        };
+        var query = breeze.EntityQuery.from("Contacts");
+        this.items = new BreezeCollectionView(this.entityManager, query, options, true, true);
     }
 };
 Welcome = __decorate([

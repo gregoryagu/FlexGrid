@@ -1,4 +1,17 @@
 //module wijmo.data {
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, Promise, generator) {
+    return new Promise(function (resolve, reject) {
+        generator = generator.call(thisArg, _arguments);
+        function cast(value) { return value instanceof Promise && value.constructor === Promise ? value : new Promise(function (resolve) { resolve(value); }); }
+        function onfulfill(value) { try { step("next", value); } catch (e) { reject(e); } }
+        function onreject(value) { try { step("throw", value); } catch (e) { reject(e); } }
+        function step(verb, value) {
+            var result = generator[verb](value);
+            result.done ? resolve(result.value) : cast(result.value).then(onfulfill, onreject);
+        }
+        step("next", void 0);
+    });
+};
 /**
  * Extends @see:CollectionView to support Breeze.
  *
@@ -16,7 +29,7 @@ export class BreezeCollectionView extends wijmo.collections.CollectionView {
     * @param sortOnServer Whether to sort on the server or on the client.
     * @param pageOnServer Whether to page on the server or on the client.
     */
-    constructor(breezeEntityManager, entityQuery, sortOnServer = false, pageOnServer = false) {
+    constructor(breezeEntityManager, entityQuery, flexGridOptions = undefined, sortOnServer = false, pageOnServer = false) {
         super();
         this._isSaving = false;
         /**
@@ -39,9 +52,13 @@ export class BreezeCollectionView extends wijmo.collections.CollectionView {
         this._entityQuery = entityQuery;
         this._sortOnServer = sortOnServer;
         this._pageOnServer = pageOnServer;
+        this._flexGridOptions = flexGridOptions;
         this.sortDescriptions.collectionChanged.removeAllHandlers();
         this.sortDescriptions.collectionChanged.addHandler(this._sortDescHandler.bind(this));
         this._queryData();
+    }
+    get FlexGridOptions() {
+        return this._flexGridOptions;
     }
     /**
      * Override _getPageView to get the list that corresponds to the current page.
@@ -293,17 +310,23 @@ export class BreezeCollectionView extends wijmo.collections.CollectionView {
     }
     // save the changes
     _saveChanges(entities) {
-        if (this._manager.hasChanges()) {
-            if (this._isSaving) {
-                setTimeout(this._saveChanges.bind(this), 50);
-                return;
+        return __awaiter(this, void 0, Promise, function* () {
+            if (this._manager.hasChanges()) {
+                if (this._isSaving) {
+                    setTimeout(this._saveChanges, 50);
+                    return;
+                }
+                this._isSaving = true;
+                try {
+                    var result = yield this._manager.saveChanges(entities);
+                    this._saveSucceeded(result);
+                }
+                catch (error) {
+                    this._saveFailed(error);
+                }
+                this._saveFinished();
             }
-            this._isSaving = true;
-            this._manager.saveChanges(entities)
-                .then(this._saveSucceeded.bind(this))
-                .catch(this._saveFailed.bind(this))
-                .finally(this._saveFinished.bind(this));
-        }
+        });
     }
 }
 export class QueryEventArgs extends wijmo.EventArgs {
