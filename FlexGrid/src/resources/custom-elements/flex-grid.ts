@@ -23,8 +23,8 @@ export class WjFlexGrid {
     attached(param: any): void {
         let options: any = {
             columns: [
-                { header: 'First Name', binding: 'FirstName' },
-                { header: 'Last Name', binding: 'LastName' }
+                { header: 'First Name', binding: 'FirstName', required: false },
+                { header: 'Last Name', binding: 'LastName', required: false }
             ],
             autoGenerateColumns: false
         };
