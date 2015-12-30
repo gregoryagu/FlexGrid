@@ -16,18 +16,23 @@ export class WjFlexGrid {
     }
 
     itemsChanged(newValue: any, oldValue: any) {
-        alert("Items Changed");
         this.items = newValue;
     } 
 
 
     attached(param: any): void {
-        this.control = new wijmo.grid.FlexGrid(this.element);
-        this.control.autoGenerateColumns = true;
+        let options: any = {
+            columns: [
+                { header: 'First Name', binding: 'FirstName' },
+                { header: 'Last Name', binding: 'LastName' }
+            ],
+            autoGenerateColumns: false
+        };
+        this.control = new wijmo.grid.FlexGrid(this.element, options);
+        
+
         if (this.items != null) {
             this.control.itemsSource = this.items;
         }
-    }
-
-    
+    } 
 }

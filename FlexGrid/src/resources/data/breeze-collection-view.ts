@@ -107,7 +107,7 @@
                     this._queryData();
                 }
             }
-            return this._pgIdx == index;
+            return this._pgIdx === index;
         }
 
         /**
@@ -130,7 +130,7 @@
         }
         set sortOnServer(value: boolean) {
             var bValue: boolean = wijmo.asBoolean(value);
-            if (this.sortOnServer == bValue) {
+            if (this.sortOnServer === bValue) {
                 return;
             }
             this._sortOnServer = bValue;
@@ -147,7 +147,7 @@
         }
         set pageOnServer(value: boolean) {
             var bValue: boolean = wijmo.asBoolean(value);
-            if (this.pageOnServer == bValue) {
+            if (this.pageOnServer === bValue) {
                 return;
             }
             this._pageOnServer = bValue;
