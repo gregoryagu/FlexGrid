@@ -336,7 +336,7 @@
         private async  _saveChanges(entities: any) {
             if (this._manager.hasChanges()) {
                 if (this._isSaving) {
-                    setTimeout(this._saveChanges.bind(this), 50);
+                    setTimeout(this._saveChanges, 50);
                     return;
                 }
                 this._isSaving = true;

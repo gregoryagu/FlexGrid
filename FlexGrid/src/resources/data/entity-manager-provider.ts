@@ -38,10 +38,7 @@ export class EntityManagerProvider {
     }
 
 
-    /////New Code
-    getEntityQuery(tableName: string) {
-        return breeze.EntityQuery.from(tableName);
-    }
+    
 
     
 

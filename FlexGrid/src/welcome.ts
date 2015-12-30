@@ -26,20 +26,22 @@ export class Welcome {
 
     getFlexData() {
 
-
+        /////New Code
+        var query = breeze.EntityQuery.from("Contacts");
+        
         this.items = new BreezeCollectionView(
-            this.entityManager, this.entityManagerProvider.getEntityQuery("Contacts"), true, true);
+            this.entityManager, query, true, true);
         
         
-        this.items.currentChanged.addHandler(() => {
-            this.currentItem = this.items.currentItem;
-            this.appLogger.info(this.currentItem.FirstName + this.currentItem.LastName);
-        });
+        //this.items.currentChanged.addHandler(() => {
+        //    this.currentItem = this.items.currentItem;
+        //    this.appLogger.info(this.currentItem.FirstName + this.currentItem.LastName);
+        //});
 
-        this.items.collectionChanged.addHandler(() => {
-            this.currentItem = this.items.currentItem;
-            this.appLogger.info("collection changed");
-        });
+        //this.items.collectionChanged.addHandler(() => {
+        //    this.currentItem = this.items.currentItem;
+        //    this.appLogger.info("collection changed");
+        //});
 
         
 
