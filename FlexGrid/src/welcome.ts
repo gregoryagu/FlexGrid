@@ -38,24 +38,7 @@ export class Welcome {
             item = this.items.currentItem;
         });
 
-        this.items.querySucceeded.addHandler((sender: any, e: any) => {
-            if (numberInput) {
-                numberInput.max = this.items.pageCount;
-            }
-            this.appLogger.querySucceeded(e.data);
-        });
-
-        this.items.queryFailed.addHandler((sender: any, e: any) => {
-            this.appLogger.queryFailed(e.data.message);
-        });
-
-        this.items.saveSucceeded.addHandler((sender: any, e: any) => {
-            this.appLogger.saveSucceeded(e.data);
-        });
-
-        this.items.saveFailed.addHandler((sender: any, e: any) => {
-            this.appLogger.saveFailed(e.data);
-        });
+        
 
 
     }
