@@ -333,17 +333,20 @@
         }
 
         // save the changes
-        private _saveChanges(entities: any) {
+        private async  _saveChanges(entities: any) {
             if (this._manager.hasChanges()) {
                 if (this._isSaving) {
                     setTimeout(this._saveChanges.bind(this), 50);
                     return;
                 }
                 this._isSaving = true;
-                this._manager.saveChanges(entities)
-                    .then(this._saveSucceeded.bind(this))
-                    .catch(this._saveFailed.bind(this))
-                    .finally(this._saveFinished.bind(this));
+                try {
+                    var result = await this._manager.saveChanges(entities);
+                    this._saveSucceeded(result);
+                } catch (error) {
+                    this._saveFailed(error);
+                }
+                this._saveFinished();
             }
         }
     }

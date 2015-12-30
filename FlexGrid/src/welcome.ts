@@ -9,6 +9,7 @@ export class Welcome {
 
     loggerTitle: string = "FileRowMaps";
     items: BreezeCollectionView;
+    currentItem: any;
 
     entityManager: breeze.EntityManager;
                        
@@ -28,14 +29,16 @@ export class Welcome {
 
         this.items = new BreezeCollectionView(
             this.entityManager, this.entityManagerProvider.getEntityQuery("Contacts"), true, true);
-        let item: any = null;
-        var numberInput: any = null;
+        
+        
         this.items.currentChanged.addHandler(() => {
-            item = this.items.currentItem;
+            this.currentItem = this.items.currentItem;
+            this.appLogger.info(this.currentItem.FirstName + this.currentItem.LastName);
         });
 
         this.items.collectionChanged.addHandler(() => {
-            item = this.items.currentItem;
+            this.currentItem = this.items.currentItem;
+            this.appLogger.info("collection changed");
         });
 
         
