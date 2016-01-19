@@ -22,19 +22,25 @@ export class Welcome {
     }
 
     getFlexData() {
+        var entityQuery = breeze.EntityQuery.from("Contacts");
 
-        let options = {
+        let flexGridOptions = {
             columns: [
                 { header: 'First Name', binding: 'FirstName', required: false },
                 { header: 'Last Name', binding: 'LastName', required: false }
             ],
-            autoGenerateColumns: false
+            autoGenerateColumns: false,
+            allowAddNew: true
         };
 
+        let collectionViewOptions = {
+            entityQuery: entityQuery,
+            entityManager: this.entityManager,
+            entityType: "Contact"
+        };
 
-        var query = breeze.EntityQuery.from("Contacts");
-        this.items = new BreezeCollectionView(
-            this.entityManager, query, options, true, true);
+        
+        this.items = new BreezeCollectionView(collectionViewOptions, flexGridOptions);
     }
 
 }

@@ -1858,6 +1858,7 @@
     <TypeScriptCompile Include="src\resources\config\urls.ts" />
     <TypeScriptCompile Include="src\resources\core\app-logger.ts" />
     <TypeScriptCompile Include="src\resources\core\error-handler.ts" />
+    <TypeScriptCompile Include="src\resources\core\IFlexGridOptions.ts" />
     <TypeScriptCompile Include="src\resources\custom-elements\flex-grid.ts" />
     <TypeScriptCompile Include="src\resources\data\breeze-collection-view.ts" />
     <TypeScriptCompile Include="src\resources\data\entity-manager-provider.ts" />
